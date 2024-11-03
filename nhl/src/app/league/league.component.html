@@ -1,0 +1,35 @@
+<div *ngIf="teamPositions.length > 0">
+    <p-progressBar [value]="progress" />
+    <p-table [value]="teamPositions" styleClass="p-datatable-striped" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Position</th>
+                <th>Logo</th>
+                <th>Team Name</th>
+                <th>Owner</th>
+                <th>Points</th>
+                <th>Played Games</th>
+                <th>Wins</th>
+                <th>Losses</th>
+                <th>Goals Scored</th>
+                <th>Goals Against</th>
+                <th>Points Before Round</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-teamPosition>
+            <tr>
+                <td>{{ teamPosition.position }}</td>
+                <td><img [src]="'assets/logos/' + teamPosition.shortName + '.png'" alt="{{ teamPosition.teamName }} Logo" style="width: 40px; height: auto;"></td>
+                <td class="bold">{{ teamPosition.teamName }}</td>
+                <td>{{ teamPosition.owner }}</td>
+                <td class="bold">{{ teamPosition.points }}</td>
+                <td>{{ teamPosition.playedGames }}</td>
+                <td>{{ teamPosition.wins }}</td>
+                <td>{{ teamPosition.losses }}</td>
+                <td>{{ teamPosition.goalsScored }}</td>
+                <td>{{ teamPosition.goalsAgainst }}</td>
+                <td>{{ teamPosition.pointsBeforeRound }}</td>
+            </tr>
+        </ng-template>
+      </p-table>
+</div>

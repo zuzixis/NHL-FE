@@ -1,0 +1,14 @@
+<p-menubar [model]="items">
+    <ng-template let-item pTemplate="item" let-index="index">
+        <a [routerLink]="item.routerLink" class="p-menuitem-link">
+            <span class="p-menuitem-icon" *ngIf="item.icon">
+                <i class="{{item.icon}}"></i>
+            </span>
+            <span class="p-menuitem-text">{{ item.label }}</span>
+        </a>
+    </ng-template>
+
+    <ng-template pTemplate="end">
+        <img src="assets/logos/NHL.png" alt="Logo" style="height: 50px;">
+    </ng-template>
+</p-menubar>
