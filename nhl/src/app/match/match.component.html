@@ -1,3 +1,113 @@
 <div>
-    <p-button label="Submit" click="" />
-</div>
+    <button 
+      pButton 
+      icon="pi pi-plus" 
+      label="Add match" 
+      (click)="overlayPanel.toggle($event)">
+    </button>
+    <p-overlayPanel #overlayPanel>
+        <form (ngSubmit)="submitForm()">
+            <!-- Team selection and score row -->
+            <div class="team-selection-row">
+                <!-- Home Team Selection -->
+                <div class="team">
+                    <label for="team1">Home Team</label>
+                    <p-dropdown 
+                        id="team1" 
+                        [(ngModel)]="homeTeam" 
+                        [options]="teams" 
+                        optionLabel="name" 
+                        placeholder="Select Team 1" 
+                        name="homeTeam" 
+                        required>
+                    </p-dropdown>
+                </div>
+    
+                <!-- Score Input Row -->
+                <div class="score">
+                    <label>Score</label>
+                    <div class="score-inputs">
+                        <p-inputNumber
+                            inputStyleClass="form-control-inputnumber"
+                            name="homeTeamScore" 
+                            [(ngModel)]="homeTeamScore"
+                            mode="decimal" 
+                            [min]="0" 
+                            [max]="100" 
+                            placeholder="0" /> 
+    
+                        <span>-</span>
+    
+                        <p-inputNumber
+                            name="awayTeamScore" 
+                            [(ngModel)]="awayTeamScore"
+                            mode="decimal" 
+                            [min]="0" 
+                            [max]="100" 
+                            placeholder="0" /> 
+                    </div>
+                </div>
+    
+                <!-- Away Team Selection -->
+                <div class="team">
+                    <label for="team2">Away Team</label>
+                    <p-dropdown 
+                        id="team2" 
+                        [(ngModel)]="awayTeam" 
+                        [options]="teams" 
+                        optionLabel="name" 
+                        placeholder="Select Team 2" 
+                        name="awayTeam" 
+                        required>
+                    </p-dropdown>
+                </div>
+            </div>
+    
+            <!-- Checkbox options -->
+            <div class="p-field-checkbox">
+                <p-checkbox 
+                    [(ngModel)]="overtime" 
+                    name="overtime" 
+                    label="Overtime"
+                    [binary]="true">
+                </p-checkbox>
+            </div>
+    
+            <div class="p-field-checkbox">
+                <p-checkbox 
+                    [(ngModel)]="simulated" 
+                    name="simulated" 
+                    label="Simulated"
+                    [binary]="true">
+                </p-checkbox>
+            </div>
+    
+            <!-- Submit button -->
+            <button pButton type="submit" label="Submit" icon="pi pi-check"></button>
+        </form>
+    </p-overlayPanel>
+
+    <p-table [value]="matches" styleClass="p-datatable-striped">
+        <ng-template pTemplate="header">
+            <tr>
+                <th class="logo-column"></th>
+                <th> Home Team</th>
+                <th>Score</th>
+                <th class="logo-column"></th>
+                <th>Away Team</th>
+                <th>Simulated</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-match>
+            <tr>
+                <td class="logo-cell"><img [src]="'assets/logos/' + match.homeTeamShortName + '.png'" alt="{{ match.homeTeamShortName }} Logo" style="width: 40px; height: auto;"></td>
+                <td>{{ match.homeTeamName }}</td>
+                <td class="bold">{{ match.homeTeamScore }} - {{ match.awayTeamScore }} {{ match.overtime? 'ot' : '' }}</td>
+                <td class="logo-cell"><img [src]="'assets/logos/' + match.awayTeamShortName + '.png'" alt="{{ match.awayTeamShortName }} Logo" style="width: 40px; height: auto;"></td>
+                <td>{{ match.awayTeamName }}</td>
+                <td>{{ match.simulated ? 'Yes' : '' }}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+  </div>
+  

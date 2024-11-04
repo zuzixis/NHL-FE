@@ -14,6 +14,8 @@
                 <th>Goals Scored</th>
                 <th>Goals Against</th>
                 <th>Points Before Round</th>
+                <th>PlayOff</th>
+                <th>Wild Card</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-teamPosition>
@@ -29,6 +31,8 @@
                 <td>{{ teamPosition.goalsScored }}</td>
                 <td>{{ teamPosition.goalsAgainst }}</td>
                 <td>{{ teamPosition.pointsBeforeRound }}</td>
+                <td>{{ teamPosition.playOff }}</td>
+                <td>{{ teamPosition.wildCard }}</td>
             </tr>
         </ng-template>
       </p-table>

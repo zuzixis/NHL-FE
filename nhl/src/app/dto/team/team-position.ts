@@ -13,4 +13,6 @@ export interface TeamPosition {
     goalsScored: number;
     goalsAgainst: number;
     pointsBeforeRound: number;
+    playOff: boolean;
+    wildCard: boolean;
 }
