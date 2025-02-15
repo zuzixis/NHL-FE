@@ -1,0 +1,104 @@
+<div class="background-image" [ngStyle]="{ 'background-image': 'url(assets/logos/ice.jpg)' }"></div>
+<div class="team">
+    <label for="team1">Team</label>
+    <p-dropdown id="team1" [options]="teams" optionLabel="name" placeholder="Select Team 1" name="homeTeam"
+        [filter]="true" filterBy="name" [(ngModel)]="selectedTeam" (ngModelChange)="onTeamSelect()" required>
+    </p-dropdown>
+
+    <label for="team2">Team</label>
+    <p-dropdown id="team2" [options]="teams" optionLabel="name" placeholder="Select Team 2" name="homeTeam"
+        [filter]="true" filterBy="name" [(ngModel)]="selectedTeam2" (ngModelChange)="onTeamSelect2()" required>
+    </p-dropdown>
+</div>
+
+<div *ngIf="selectedTeam" class="team-logos-background">
+    <div class="team-logo left-team-logo"
+        [ngStyle]="{ 'background-image': 'url(assets/logos/' + selectedTeam.shortName + '.png)' }"></div>
+    <div class="team-logo right-team-logo"
+        [ngStyle]="{ 'background-image': 'url(assets/logos/' + selectedTeam2.shortName + '.png)' }"></div>
+</div>
+
+
+<div class="name">Head-to-head Stats</div>
+
+<div *ngFor="let stat of stats" class="stat-container">
+    <!-- Stat Header -->
+    <div class="stat-header">
+        <span>{{ stat.label }}</span>
+    </div>
+
+    <!-- Progress Bars -->
+    <div class="stat-bars">
+        <!-- Team 1 Bar -->
+        <div class="progress-container">
+            <span>{{ stat.value1 }}</span>
+            <div class="progress-bar-wrapper">
+                <p-progressBar [value]="stat.value1Percent" showValue="false" dir="rtl"
+                    [styleClass]="'team1-bar progress-left'">
+                </p-progressBar>
+            </div>
+        </div>
+
+        <!-- Team 2 Bar -->
+        <div class="progress-container">
+            <div class="progress-bar-wrapper">
+                <p-progressBar [value]="stat.value2Percent" showValue="false" [styleClass]="'team2-bar'" color="red">
+                </p-progressBar>
+            </div>
+            <span>{{ stat.value2 }}</span>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card" *ngIf="data1">
+    <div class="name">Head-to-head stats</div>
+
+    <p-chart type="bar" [data]="data1" [options]="options1" />
+</div>
+
+
+<div class="name">Matches</div>
+
+
+
+
+
+<div class="matches-container">
+    <div *ngFor="let match of againstMatches" class="match-card">
+        <div class="card-content">
+            <!-- Left team name -->
+            <span class="team-info" [ngClass]="{'bold': (match?.homeTeamScore || 0) > (match?.awayTeamScore || 0)}">
+                {{ match?.homeTeamName || 'Unknown Team' }}
+            </span>
+
+            <!-- Left team logo -->
+            <img [src]="'assets/logos/' + (match?.homeTeamShortName || 'default-logo') + '.png'"
+                alt="{{ match?.homeTeamShortName || 'Unknown Team' }} Logo" />
+
+            <!-- Score -->
+            <span class="match-score">
+                {{ match?.homeTeamScore ?? '-' }} - {{ match?.awayTeamScore ?? '-' }}
+            </span>
+
+            <!-- Right team logo -->
+            <img [src]="'assets/logos/' + (match?.awayTeamShortName || 'default-logo') + '.png'"
+                alt="{{ match?.awayTeamShortName || 'Unknown Team' }} Logo" />
+
+            <!-- Right team name -->
+            <span class="team-info" [ngClass]="{'bold': (match?.homeTeamScore || 0) < (match?.awayTeamScore || 0)}">
+                {{ match?.awayTeamName || 'Unknown Team' }}
+            </span>
+        </div>
+
+        <div class="card-footer">
+            <span *ngIf="match?.simulated" class="simulated">
+                <i class="pi pi-clock"></i> Simulated
+            </span>
+            <span *ngIf="match?.overtime" class="overtime">
+                <i class="pi pi-info-circle"></i> Overtime
+            </span>
+        </div>
+    </div>
+</div>

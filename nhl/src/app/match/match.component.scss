@@ -8,14 +8,15 @@
 
 .logo-cell {
     width: 50px;
-    text-align: center; /* Center-align images if needed */
+    text-align: center;
+    /* Center-align images if needed */
 }
 
 .score-inputs p-inputNumber {
     input {
         width: 50px;
     }
-    
+
 }
 
 .width-50 {
@@ -23,9 +24,9 @@
 }
 
 :host ::ng-deep .form-control-inputnumber {
-    background:red;
+    background: red;
     width: 50px;
-  }
+}
 
 .team-selection-row {
     display: flex;
@@ -55,5 +56,119 @@
 }
 
 .score-inputs p-inputNumber {
-    width: 50px; /* Adjust width as needed */
+    width: 50px;
+    /* Adjust width as needed */
+}
+
+.small-width {
+    width: 20px;
+    padding-left: 0;
+    padding-right: 0;
+    text-align: center;
+}
+
+.score-column {
+    width: 50px;
+    text-align: center;
+    padding-left: 0;
+    padding-right: 0;
+
+}
+
+.left-team-column {
+    text-align: right;
+}
+
+.overtime {
+    text-align: left;
+
+}
+
+.table-container {
+    // width: 60%;
+    // margin: 0 auto;
+}
+
+.small-padding-top{
+    padding-top: 10px;
+} 
+
+.small-margin-top{
+    margin-top: 10px;
+} 
+
+
+
+
+.matches-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+    align-items: center;
+}
+
+.match-card {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1000px; /* Ensures a reasonable width */
+    margin: 20px auto; /* Centers the card */
+}
+
+.card-content {
+    display: grid;
+    grid-template-columns: 1fr auto auto auto 1fr; /* Defines 5 columns: name1, logo1, score, logo2, name2 */
+    align-items: center; /* Centers items vertically */
+    text-align: center; /* Centers text for logos and score */
+    gap: 30px; /* Adjust spacing between elements */
+    margin-bottom: 10px;
+   
+}
+
+.team-info:first-of-type {
+    text-align: right; /* Align left team's name to the right */
+}
+
+.team-info:last-of-type {
+    text-align: left; /* Align right team's name to the left */
+}
+
+.card-content img {
+    width: 40px;
+    height: auto; /* Maintain aspect ratio */
+    max-height: 40px; /* Prevent logos from being too tall */
+    object-fit: contain;
+}
+
+.match-score {
+    font-size: 20px;
+    font-weight: bold;
+    white-space: nowrap; /* Prevents line breaks for the score */
+}
+
+.card-footer {
+    margin-top: 8px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+}
+
+.card-footer .simulated,
+.card-footer .overtime {
+    font-size: 0.9rem;
+    color: #555;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.card-footer .simulated i,
+.card-footer .overtime i {
+    font-size: 1rem;
 }

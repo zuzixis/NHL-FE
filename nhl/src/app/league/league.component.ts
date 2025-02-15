@@ -14,6 +14,7 @@ export class LeagueComponent implements OnInit {
   seasons: Season[] = [];
   teamPositions: TeamPosition[] = [];
   progress: number = 0;
+  value: boolean = false;  
 
 
   constructor(private seasonService: SeasonService) {
@@ -25,7 +26,8 @@ export class LeagueComponent implements OnInit {
       this.seasons = result;
       if (this.seasons.length > 0) {
         if (result[0].countOfPlayedMatches) {
-          this.progress = result[0].countOfPlayedMatches / result[0].countOfMatches * 100;
+          this.progress = parseFloat((result[0].countOfPlayedMatches / result[0].countOfMatches * 100).toFixed(2));
+
           console.log('___ progres = ' + this.progress);
         }
         this.seasonService.getSeasonTeamsData(this.seasons[0].id.toString()).subscribe((positions: TeamPosition[]) => {

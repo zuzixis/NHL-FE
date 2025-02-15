@@ -15,4 +15,7 @@ export interface TeamPosition {
     pointsBeforeRound: number;
     playOff: boolean;
     wildCard: boolean;
+    positionBeforeRound: number;
+    division: string;
+    conference: string;
 }

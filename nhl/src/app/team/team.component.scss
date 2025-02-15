@@ -1,0 +1,141 @@
+.logo-carousel-1 {
+    position: absolute;
+    width: 70px;
+    margin-top: 38px;
+    margin-left: -346px;
+}
+
+.logo-carousel-2 {
+    position: absolute;
+    width: 70px;
+    margin-top: 80px;
+    margin-left: -120px;
+}
+
+.score-carousel {
+    position: absolute;
+    width: 70px;
+    margin-top: 80px;
+    color: white;
+    margin-left: -120px;
+}
+
+.transparent-team-logo {
+    opacity: 8%;
+    width: 99%;
+    position: absolute;
+}
+
+.bold {
+    font-weight: 500;
+}
+
+.logo-column {
+    width: 50px;
+}
+
+.logo-cell {
+    width: 50px;
+    text-align: center;
+    /* Center-align images if needed */
+}
+
+.score-inputs p-inputNumber {
+    input {
+        width: 50px;
+    }
+
+}
+
+.width-50 {
+    width: 50px;
+}
+
+:host ::ng-deep .form-control-inputnumber {
+    background: red;
+    width: 50px;
+}
+
+.team-selection-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.team-selection-row .team {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.team-selection-row .score {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-width: 100px;
+}
+
+.score-inputs {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.score-inputs p-inputNumber {
+    width: 50px;
+    /* Adjust width as needed */
+}
+
+.small-width {
+    width: 20px;
+    padding-left: 0;
+    padding-right: 0;
+    text-align: center;
+}
+
+.score-column {
+    width: 50px;
+    text-align: center;
+    padding-left: 0;
+    padding-right: 0;
+
+}
+
+.left-team-column {
+    text-align: right;
+}
+
+.overtime {
+    text-align: left;
+
+}
+
+.table-container {
+    // width: 60%;
+    // margin: 0 auto;
+}
+
+.small-padding-top {
+    padding-top: 10px;
+}
+
+.small-margin-top {
+    margin-top: 10px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.column-height {
+    height: 40px;
+}
+
+.name {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    margin: 20px;
+}

@@ -22,6 +22,12 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CheckboxModule } from 'primeng/checkbox';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { ConferenceComponent } from './conference/conference.component';
+import { TagModule } from 'primeng/tag';
+import { DivisionComponent } from './division/division.component';
+import { CarouselModule } from 'primeng/carousel';
+import { TeamCompareComponent } from './team-compare/team-compare.component';
+import { ChartModule } from 'primeng/chart';
 
 @NgModule({
   declarations: [
@@ -30,7 +36,10 @@ import { InputNumberModule } from 'primeng/inputnumber';
     TableComponent,
     TeamComponent,
     LeagueComponent,
-    MatchComponent
+    MatchComponent,
+    ConferenceComponent,
+    DivisionComponent,
+    TeamCompareComponent
   ],
   imports: [
     HttpClientModule,
@@ -46,7 +55,10 @@ import { InputNumberModule } from 'primeng/inputnumber';
     DropdownModule,
     BrowserAnimationsModule,
     CheckboxModule,
-    InputNumberModule
+    InputNumberModule,
+    TagModule,
+    CarouselModule,
+    ChartModule
   ],
   providers: [
     provideClientHydration(),

@@ -1,39 +1,81 @@
+
+<div class="league-name">NHL league</div>
 <div *ngIf="teamPositions.length > 0">
     <p-progressBar [value]="progress" />
     <p-table [value]="teamPositions" styleClass="p-datatable-striped" [tableStyle]="{ 'min-width': '50rem' }">
         <ng-template pTemplate="header">
             <tr>
-                <th>Position</th>
-                <th>Logo</th>
+                <th>#</th>
+                <th></th>
                 <th>Team Name</th>
                 <th>Owner</th>
-                <th>Points</th>
-                <th>Played Games</th>
-                <th>Wins</th>
-                <th>Losses</th>
-                <th>Goals Scored</th>
-                <th>Goals Against</th>
-                <th>Points Before Round</th>
-                <th>PlayOff</th>
-                <th>Wild Card</th>
+
+                <th>M</th>
+                <th>P</th>
+                <th>P %</th>
+                <th>W</th>
+                <th>WOT</th>
+                <th>LOT</th>
+                <th>L</th>
+                <th>GF</th>
+                <th>GA</th>
+                <th>G+/-</th>
+                <th></th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-teamPosition>
-            <tr>
-                <td>{{ teamPosition.position }}</td>
-                <td><img [src]="'assets/logos/' + teamPosition.shortName + '.png'" alt="{{ teamPosition.teamName }} Logo" style="width: 40px; height: auto;"></td>
+            <tr class="row-height">
+
+
+                <td [ngClass]="{
+                    'playoff-border': teamPosition.playOff,
+                    'wildcard-border': !teamPosition.playOff && teamPosition.wildCard
+                }"> {{ teamPosition.position }}
+                </td>
+                <td class="row-height table-logo-width"><img [src]="'assets/logos/' + teamPosition.shortName + '.png'"
+                        alt="{{ teamPosition.teamName }} Logo" style="width: 40px; height: auto;"></td>
                 <td class="bold">{{ teamPosition.teamName }}</td>
                 <td>{{ teamPosition.owner }}</td>
-                <td class="bold">{{ teamPosition.points }}</td>
                 <td>{{ teamPosition.playedGames }}</td>
+                <td class="bold">{{ teamPosition.points }}</td>
+                <td>{{ (teamPosition.points / (teamPosition.playedGames * 2) * 100) | number: '1.0-0' }} %</td>
+
                 <td>{{ teamPosition.wins }}</td>
+                <td>{{ teamPosition.winsOt }}</td>
+                <td>{{ teamPosition.lossesOt }}</td>
                 <td>{{ teamPosition.losses }}</td>
                 <td>{{ teamPosition.goalsScored }}</td>
                 <td>{{ teamPosition.goalsAgainst }}</td>
-                <td>{{ teamPosition.pointsBeforeRound }}</td>
-                <td>{{ teamPosition.playOff }}</td>
-                <td>{{ teamPosition.wildCard }}</td>
+                <td>{{ teamPosition.goalsScored-teamPosition.goalsAgainst }}</td>
+
+                <td>
+
+                    <i class="font-style-normal" [ngClass]="
+                            (teamPosition.positionBeforeRound - teamPosition.position) < 0 ? 'pi pi-sort-down-fill red-color font-size-18' :
+                            (teamPosition.positionBeforeRound - teamPosition.position) > 0 ? 'pi pi-sort-up-fill green-color font-size-18' :
+                            'pi pi-circle-fill blue-color'"> {{teamPosition.positionBeforeRound -
+                        teamPosition.position}}
+                    </i>
+
+                    <!--<i class="pi pi-sort-down-fill" style="color: green"></i>
+                    <i class="pi pi-sort-up-fill" style="color: red"></i>
+                    <i class="pi pi-minus" style="color: yellow"></i>
+                    <div *ngIf="teamPosition.positionBeforeRound - teamPosition.position > 0">
+                       
+                        <p-tag severity="success" icon="pi pi-caret-up"
+                            value="+{{ teamPosition.positionBeforeRound - teamPosition.position }}" />
+                    </div>
+                    <div *ngIf="teamPosition.positionBeforeRound - teamPosition.position == 0">
+                        <p-tag severity="secondary"
+                            value="{{ teamPosition.positionBeforeRound - teamPosition.position }}" />
+                    </div>
+                    <div *ngIf="teamPosition.positionBeforeRound - teamPosition.position < 0">
+                        <p-tag severity="danger"
+                            value="{{ teamPosition.positionBeforeRound - teamPosition.position }}" />
+                    </div>-->
+                </td>
+
             </tr>
         </ng-template>
-      </p-table>
+    </p-table>
 </div>

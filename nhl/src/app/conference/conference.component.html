@@ -1,0 +1,197 @@
+<div class="conference-name">
+    Western Conference
+</div>
+<div *ngIf="this.teamPositionsByDivision[ConferenceEnum.WESTERN].length > 0">
+    <p-table [value]="this.teamPositionsByDivision[ConferenceEnum.WESTERN]" styleClass="p-datatable-striped"
+        [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Position</th>
+                <th></th>
+                <th>Team Name</th>
+                <th>Owner</th>
+                <th>Points</th>
+                <th>Played Games</th>
+                <th>Wins</th>
+                <th>Losses</th>
+                <th>Goals Scored</th>
+                <th>Goals Against</th>
+                <th>Points Before Round</th>
+                <th>PlayOff</th>
+                <th>Wild Card</th>
+                <th>Positions Last</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-teamPosition let-i="rowIndex">
+            <tr>
+
+                <td [ngClass]="{
+                    'playoff-border': teamPosition.playOff,
+                    'wildcard-border': !teamPosition.playOff && teamPosition.wildCard
+                }"> {{ i+1 }}
+                </td>
+                <td><img [src]="'assets/logos/' + teamPosition.shortName + '.png'"
+                        alt="{{ teamPosition.teamName }} Logo" style="width: 40px; height: auto;"></td>
+                <td class="bold">{{ teamPosition.teamName }}</td>
+                <td>{{ teamPosition.owner }}</td>
+                <td class="bold">{{ teamPosition.points }}</td>
+                <td>{{ teamPosition.playedGames }}</td>
+                <td>{{ teamPosition.wins }}</td>
+                <td>{{ teamPosition.losses }}</td>
+                <td>{{ teamPosition.goalsScored }}</td>
+                <td>{{ teamPosition.goalsAgainst }}</td>
+                <td>{{ teamPosition.pointsBeforeRound }}</td>
+                <td>{{ teamPosition.playOff }}</td>
+                <td>{{ teamPosition.wildCard }}</td>
+                <td> <i class="font-style-normal" [ngClass]="
+                (teamPosition.positionConferenceBeforeRound -i -1) < 0 ? 'pi pi-sort-down-fill red-color font-size-18' :
+                (teamPosition.positionConferenceBeforeRound - i-1) > 0 ? 'pi pi-sort-up-fill green-color font-size-18' :
+                'pi pi-circle-fill blue-color'"> {{teamPosition.positionConferenceBeforeRound -i-1}}
+                    </i></td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+<div *ngIf="teamWestPositions.length > 0">
+    <p-table [value]="teamWestPositions" styleClass="p-datatable-striped" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Position</th>
+                <th></th>
+                <th>Team Name</th>
+                <th>Owner</th>
+                <th>Points</th>
+                <th>Played Games</th>
+                <th>Wins</th>
+                <th>Losses</th>
+                <th>Goals Scored</th>
+                <th>Goals Against</th>
+                <th>Points Before Round</th>
+                <th>PlayOff</th>
+                <th>Wild Card</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-teamPosition let-i="rowIndex">
+            <tr>
+                <td [ngClass]="{
+                    'playoff-border': teamPosition.playOff,
+                    'wildcard-border': !teamPosition.playOff && teamPosition.wildCard
+                }"> {{ i+1 }}
+                </td>
+                <td>
+                    <img [src]="'assets/logos/' + teamPosition.shortName + '.png'"
+                        alt="{{ teamPosition.teamName }} Logo" style="width: 40px; height: auto;">
+                </td>
+                <td class="bold">{{ teamPosition.teamName }}</td>
+                <td>{{ teamPosition.owner }}</td>
+                <td class="bold">{{ teamPosition.points }}</td>
+                <td>{{ teamPosition.playedGames }}</td>
+                <td>{{ teamPosition.wins }}</td>
+                <td>{{ teamPosition.losses }}</td>
+                <td>{{ teamPosition.goalsScored }}</td>
+                <td>{{ teamPosition.goalsAgainst }}</td>
+                <td>{{ teamPosition.pointsBeforeRound }}</td>
+                <td>{{ teamPosition.playOff }}</td>
+                <td>{{ teamPosition.wildCard }}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+<div class="conference-name">
+    Eastern Conference
+</div>
+<div *ngIf="this.teamPositionsByDivision[ConferenceEnum.EASTERN].length > 0">
+    <p-table [value]="this.teamPositionsByDivision[ConferenceEnum.EASTERN]" styleClass="p-datatable-striped"
+        [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Position</th>
+                <th></th>
+                <th>Team Name</th>
+                <th>Owner</th>
+                <th>Points</th>
+                <th>Played Games</th>
+                <th>Wins</th>
+                <th>Losses</th>
+                <th>Goals Scored</th>
+                <th>Goals Against</th>
+                <th>Points Before Round</th>
+                <th>PlayOff</th>
+                <th>Wild Card</th>
+                <th>Positions Last</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-teamPosition let-i="rowIndex">
+            <tr>
+
+                <td [ngClass]="{
+                    'playoff-border': teamPosition.playOff,
+                    'wildcard-border': !teamPosition.playOff && teamPosition.wildCard
+                }"> {{ teamPosition.position }}
+                </td>
+                <td><img [src]="'assets/logos/' + teamPosition.shortName + '.png'"
+                        alt="{{ teamPosition.teamName }} Logo" style="width: 40px; height: auto;"></td>
+                <td class="bold">{{ teamPosition.teamName }}</td>
+                <td>{{ teamPosition.owner }}</td>
+                <td class="bold">{{ teamPosition.points }}</td>
+                <td>{{ teamPosition.playedGames }}</td>
+                <td>{{ teamPosition.wins }}</td>
+                <td>{{ teamPosition.losses }}</td>
+                <td>{{ teamPosition.goalsScored }}</td>
+                <td>{{ teamPosition.goalsAgainst }}</td>
+                <td>{{ teamPosition.pointsBeforeRound }}</td>
+                <td>{{ teamPosition.playOff }}</td>
+                <td>{{ teamPosition.wildCard }}</td>
+                <td> <i class="font-style-normal" [ngClass]="
+                    (teamPosition.positionConferenceBeforeRound -i -1) < 0 ? 'pi pi-sort-down-fill red-color font-size-18' :
+                    (teamPosition.positionConferenceBeforeRound - i-1) > 0 ? 'pi pi-sort-up-fill green-color font-size-18' :
+                    'pi pi-circle-fill blue-color'"> {{teamPosition.positionConferenceBeforeRound -i-1}}
+                        </i></td>            </tr>
+        </ng-template>
+    </p-table>
+</div>
+<div *ngIf="teamWestPositions.length > 0">
+    <p-table [value]="teamWestPositions" styleClass="p-datatable-striped" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Position</th>
+                <th></th>
+                <th>Team Name</th>
+                <th>Owner</th>
+                <th>Points</th>
+                <th>Played Games</th>
+                <th>Wins</th>
+                <th>Losses</th>
+                <th>Goals Scored</th>
+                <th>Goals Against</th>
+                <th>Points Before Round</th>
+                <th>PlayOff</th>
+                <th>Wild Card</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-teamPosition let-i="rowIndex">
+            <tr>
+                <td [ngClass]="{
+                    'playoff-border': teamPosition.playOff,
+                    'wildcard-border': !teamPosition.playOff && teamPosition.wildCard
+                }"> {{ teamPosition.position }}
+                </td>
+                <td>
+                    <img [src]="'assets/logos/' + teamPosition.shortName + '.png'"
+                        alt="{{ teamPosition.teamName }} Logo" style="width: 40px; height: auto;">
+                </td>
+                <td class="bold">{{ teamPosition.teamName }}</td>
+                <td>{{ teamPosition.owner }}</td>
+                <td class="bold">{{ teamPosition.points }}</td>
+                <td>{{ teamPosition.playedGames }}</td>
+                <td>{{ teamPosition.wins }}</td>
+                <td>{{ teamPosition.losses }}</td>
+                <td>{{ teamPosition.goalsScored }}</td>
+                <td>{{ teamPosition.goalsAgainst }}</td>
+                <td>{{ teamPosition.pointsBeforeRound }}</td>
+                <td>{{ teamPosition.playOff }}</td>
+                <td>{{ teamPosition.wildCard }}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

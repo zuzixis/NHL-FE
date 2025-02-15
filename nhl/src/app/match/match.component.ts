@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Team } from '../dto/team/team';
 import { SeasonService } from '../services/season.service';
 import { Match } from '../dto/match/match';
+import { map, tap } from 'rxjs';
 
 @Component({
   selector: 'app-match',
@@ -12,8 +13,8 @@ import { Match } from '../dto/match/match';
 export class MatchComponent implements OnInit {
 
   teams: Team[] = [];
-  homeTeam: Team | undefined;
-  awayTeam: Team | undefined;
+  homeTeam: Team | undefined | null;
+  awayTeam: Team | undefined | null;
   homeTeamScore: number = 0;
   awayTeamScore: number = 0;
   simulated: boolean = false;
@@ -23,10 +24,11 @@ export class MatchComponent implements OnInit {
   constructor(private seasonService: SeasonService) {}
 
   ngOnInit(): void {
-    this.seasonService.getTeams().subscribe((teams) => {
-      this.teams = teams;
-    });
-
+    this.seasonService.getTeams().pipe(
+      map((teams) => teams.sort((a, b) => a.name.localeCompare(b.name))),
+      tap((sortedTeams) => this.teams = sortedTeams)
+    ).subscribe();
+    
     this.seasonService.getSeasonMatches("1").subscribe((result) => {
       this.matches = result;
     });
@@ -50,7 +52,12 @@ export class MatchComponent implements OnInit {
 
     this.seasonService.createMatch(matchData).subscribe(
       response => {
-        this.matches.push(response);
+        this.matches = [response, ...this.matches];
+
+        this.homeTeam = null;
+        this.awayTeam = null;
+        this.homeTeamScore = 0;
+        this.awayTeamScore = 0;
       },
       error => {
         console.error('Error:', error);
